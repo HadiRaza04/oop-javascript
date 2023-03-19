@@ -227,14 +227,50 @@ Dog.prototype.isPrototypeOf(beagle2);
 function Dog(name) {
     this.name = name;
 }
-
 let beagle3 = new Dog("Snoopy");
-
 Dog.prototype.isPrototypeOf(beagle3);  // yields true
 
-// Fix the code below so that it evaluates to true
 Object.prototype.isPrototypeOf(Dog.prototype);
 
+
+
+// Use Inheritance So You Don't Repeat Yourself
+function Cat(name) {
+    this.name = name;
+}
+Cat.prototype = {
+    constructor: Cat,
+};
+
+function Bear(name) {
+    this.name = name;
+}
+Bear.prototype = {
+    constructor: Bear,
+};
+
+function Animal() { }
+
+Animal.prototype = {
+    constructor: Animal,
+    eat: function() {
+        console.log("nom nom nom");
+    }
+};
+
+
+// Inherit Behaviors from a Supertype
+function Animal() { }
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+
+let duck = Object.create(Animal.prototype);
+let beagle4 = Object.create(Animal.prototype);
 
 
 
